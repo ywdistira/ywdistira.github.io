@@ -103,11 +103,10 @@
 
   <div class="video-container">
     <video class="video" autoplay loop muted>
-      <source src="https://drive.google.com/uc?export=download&id=1qUunICHqDqmg36vRQNpfa60wyGQyiz24" type="video/webm">
-    </video>
-
-    <video class="video" autoplay loop muted>
       <source src="https://drive.google.com/uc?export=download&id=1Og4cW5EAeic36lfersFr_L6lQtBgCXRy" type="video/webm">
+    </video>
+    <video class="video" autoplay loop muted>
+      <source src="https://drive.google.com/uc?export=download&id=1qUunICHqDqmg36vRQNpfa60wyGQyiz24" type="video/webm">
     </video>
   </div>
 
@@ -117,11 +116,22 @@
     &copy;2023 Yudistira Adyatama. All rights reserved.
   </div>
 
+  <audio id="rightClickSound" src="alarm.ogg"></audio>
+
   <script>
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
+      playRightClickSound();
       showNoRightClickMessage(e.clientX, e.clientY);
     });
+
+    function playRightClickSound() {
+      var audio = document.getElementById('rightClickSound');
+      audio.volume = 0.5; // Set volume to 50% (0.5)
+      audio.play().catch(function(error) {
+        console.error('Failed to play audio:', error);
+      });
+    }
 
     function showNoRightClickMessage(x, y) {
       var message = document.querySelector('.no-right-click');
