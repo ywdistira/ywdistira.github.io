@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pura Pura Portofolio</title>
+  <style>
+    @font-face {
+      font-family: 'Lora';
+      src: url('lora.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'Lora', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .portfolio-image {
+      display: inline-block;
+      margin: 10px;
+      width: 300px;
+      height: 200px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .no-right-click {
+      display: none;
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 24px;
+      pointer-events: none;
+    }
+
+    .portfolio-text {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .author-text {
+      font-size: 12px;
+      color: #999999;
+      margin-top: -5px;
+    }
+
+    /* Disable right-click on the entire page */
+    html, body {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pura Pura Portofolio</h1>
+  <p class="author-text">Yudistira Adyatama</p>
+
+  <a href="https://www.instagram.com/adyatama.id">
+    <img src="instagram.png" alt="Instagram" width="35" height="35">
+  </a>
+
+  <a href="https://wa.me/6287742337899">
+    <img src="whatsapp.png" alt="WhatsApp" width="35" height="35">
+  </a>
+
+  <div class="portfolio-images">
+    <div class="portfolio-image" style="background-image: url('Porto1.jpg');"></div>
+    <div class="portfolio-image" style="background-image: url('Porto2.png');"></div>
+    <div class="portfolio-image" style="background-image: url('Porto3.jpg');"></div>
+    <div class="portfolio-image" style="background-image: url('Porto4.jpg');"></div>
+    <div class="portfolio-image" style="background-image: url('Porto5.jpg');"></div>
+    <div class="portfolio-image" style="background-image: url('Porto6.jpg');"></div>
+    <!-- Add more div tags with background-image style for your portfolio images -->
+  </div>
+
+  <div class="portfolio-text">Baru dikit, sabar. Besok balik lagi kalo dah banyak gambarnya ya.</div>
+
+  <div class="no-right-click">Jangan klik kanan!</div>
+
+  <audio id="rightClickSound" src="alarm.ogg"></audio>
+
+  <script>
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      playRightClickSound();
+      showNoRightClickMessage(e.clientX, e.clientY);
+    });
+
+    function playRightClickSound() {
+      var audio = document.getElementById('rightClickSound');
+      audio.volume = 0.5; // Set volume to 50% (0.5)
+      audio.play().catch(function(error) {
+        console.error('Failed to play audio:', error);
+      });
+    }
+
+    function showNoRightClickMessage(x, y) {
+      var message = document.querySelector('.no-right-click');
+      message.style.display = 'block';
+      message.style.left = x + 'px';
+      message.style.top = y + 'px';
+      setTimeout(function() {
+        message.style.display = 'none';
+      }, 2000); // Adjust the duration (in milliseconds) the message should be displayed
+    }
+  </script>
+</body>
+</html>
