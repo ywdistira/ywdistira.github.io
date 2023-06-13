@@ -13,7 +13,7 @@
     body {
       font-family: 'Lora', Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       text-align: center;
       background-color: #000000;
       color: #ffffff;
@@ -25,12 +25,14 @@
 
     .portfolio-image {
       display: inline-block;
-      margin: 10px;
-      width: 300px;
-      height: 200px;
+      margin: 0;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: calc(100vh - 100px); /* Adjust the subtracted height to leave space for other elements */
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
+      background-size: contain;
     }
 
     .no-right-click {
@@ -64,15 +66,10 @@
       user-select: none;
     }
 
-    /* Media query for mobile devices */
+    /* Media query for small devices */
     @media only screen and (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-
       .portfolio-image {
-        width: calc(50% - 20px);
-        height: auto;
+        max-height: calc(100vh - 70px);
       }
     }
   </style>
