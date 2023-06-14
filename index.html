@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Hi! aku Adi</title>
+  <link rel="icon" type="image/png" href="miniicon.png">
   <style>
     @font-face {
       font-family: 'Lora';
@@ -44,6 +45,11 @@
       background-position: center;
       background-size: cover;
       margin-bottom: 2%;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-image:hover {
+      transform: scale(1.1);
     }
 
     .no-right-click {
@@ -56,16 +62,29 @@
       pointer-events: none;
     }
 
-    .video-container {
-      width: calc(50% - 2%);
-      padding-top: 0;
-      margin-bottom: 2%;
+    .fullscreen-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
     }
 
-    .video-container video {
+    .fullscreen-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      height: auto;
-      object-fit: cover;
+      height: 100%;
+    }
+
+    .fullscreen-image {
+      max-width: 100%;
+      max-height: 100%;
+      margin: auto;
     }
 
     .footer {
@@ -74,8 +93,13 @@
       color: #999999;
     }
 
+    .footer span {
+      display: block;
+    }
+
     /* Disable right-click on the entire page */
-    html, body {
+    html,
+    body {
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -106,27 +130,44 @@
     <div class="portfolio-image" style="background-image: url('https://drive.google.com/uc?export=view&id=1AxD-q-v5xpDSIkhgerAXzE4EdQnvnpmq');"></div>
     <div class="portfolio-image" style="background-image: url('https://drive.google.com/uc?export=view&id=1FgFww7c7PvfJbc6bSUVDnCbGqCzdhQ8V');"></div>
     <!-- Add more div tags with background-image style for your portfolio images -->
-    <div class="video-container">
-      <video class="video" autoplay loop muted>
-        <source src="https://drive.google.com/uc?export=download&id=1Og4cW5EAeic36lfersFr_L6lQtBgCXRy" type="video/webm">
-      </video>
-    </div>
-    <div class="video-container">
-      <video class="video" autoplay loop muted>
-        <source src="https://drive.google.com/uc?export=download&id=1qUunICHqDqmg36vRQNpfa60wyGQyiz24" type="video/webm">
-      </video>
-    </div>
   </div>
 
   <div class="no-right-click">Jangan klik kanan!</div>
 
+  <div class="fullscreen-overlay">
+    <div class="fullscreen-content">
+      <img class="fullscreen-image" src="" alt="Fullscreen Image">
+    </div>
+  </div>
+
   <div class="footer">
-    &copy;2023 Yudistira Adyatama. All rights reserved.
+    <span>Icons provided by icons8.com</span>
+    <span>&copy;2023 Yudistira Adyatama. All rights reserved.</span>
   </div>
 
   <audio id="rightClickSound" src="alarm.ogg"></audio>
 
   <script>
+    const portfolioImages = document.querySelectorAll('.portfolio-image');
+    const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
+    const fullscreenImage = document.querySelector('.fullscreen-image');
+
+    portfolioImages.forEach((image) => {
+      image.addEventListener('click', () => {
+        const imageUrl = image.style.backgroundImage.replace(/^url\(['"](.+)['"]\)/, '$1');
+        showFullscreenImage(imageUrl);
+      });
+    });
+
+    function showFullscreenImage(url) {
+      fullscreenImage.src = url;
+      fullscreenOverlay.style.display = 'flex';
+    }
+
+    fullscreenOverlay.addEventListener('click', () => {
+      fullscreenOverlay.style.display = 'none';
+    });
+
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
       playRightClickSound();
