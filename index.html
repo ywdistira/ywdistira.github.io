@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>Hi! aku Adi</title>
-  <link rel="icon" type="image/png" href="miniicon.png">
   <style>
     @font-face {
       font-family: 'Lora';
@@ -87,6 +86,15 @@
       margin: auto;
     }
 
+    .loading-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: #ffffff;
+    }
+
     .footer {
       margin-top: 4%;
       font-size: 12px;
@@ -136,6 +144,7 @@
 
   <div class="fullscreen-overlay">
     <div class="fullscreen-content">
+      <div class="loading-text">Tunggu bentar ya</div>
       <img class="fullscreen-image" src="" alt="Fullscreen Image">
     </div>
   </div>
@@ -151,6 +160,7 @@
     const portfolioImages = document.querySelectorAll('.portfolio-image');
     const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
     const fullscreenImage = document.querySelector('.fullscreen-image');
+    const loadingText = document.querySelector('.loading-text');
 
     portfolioImages.forEach((image) => {
       image.addEventListener('click', () => {
@@ -160,7 +170,17 @@
     });
 
     function showFullscreenImage(url) {
-      fullscreenImage.src = url;
+      loadingText.style.display = 'block';
+      fullscreenImage.style.display = 'none';
+
+      const tempImage = new Image();
+      tempImage.onload = () => {
+        fullscreenImage.src = url;
+        loadingText.style.display = 'none';
+        fullscreenImage.style.display = 'block';
+      };
+      tempImage.src = url;
+
       fullscreenOverlay.style.display = 'flex';
     }
 
