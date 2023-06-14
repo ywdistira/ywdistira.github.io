@@ -13,31 +13,44 @@
     body {
       font-family: 'Lora', Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 2%;
       text-align: center;
       background-color: #000000;
       color: #ffffff;
     }
 
     h1 {
-      margin-bottom: 5px;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .contact-icons {
+      margin-bottom: 2%;
+    }
+
+    .portfolio-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2% 2%;
+      margin-bottom: 2%;
     }
 
     .portfolio-image {
-      display: inline-block;
-      margin: 10px;
-      width: 300px;
-      height: 200px;
+      width: calc(33.33% - 4%);
+      padding-top: calc(33.33% - 4%);
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
+      margin-bottom: 2%;
     }
 
     .no-right-click {
       display: none;
       position: fixed;
       background-color: rgba(0, 0, 0, 0.7);
-      padding: 20px;
+      padding: 2%;
       border-radius: 10px;
       font-size: 24px;
       pointer-events: none;
@@ -49,22 +62,19 @@
     }
 
     .video-container {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
+      width: 66.66%;
+      padding-top: 0;
+      margin-bottom: 2%;
     }
 
     .video-container video {
-      width: 300px;
-      height: 200px;
+      width: 100%;
+      height: auto;
       object-fit: cover;
     }
 
     .footer {
-      margin-top: 50px;
+      margin-top: 4%;
       font-size: 12px;
       color: #999999;
     }
@@ -83,13 +93,15 @@
 <body>
   <h1>Hi! aku Adi</h1>
 
-  <a href="https://www.instagram.com/adyatama.id">
-    <img src="instagram.png" alt="Instagram" width="35" height="35">
-  </a>
+  <div class="contact-icons">
+    <a href="https://www.instagram.com/adyatama.id">
+      <img src="instagram.png" alt="Instagram" width="35" height="35">
+    </a>
 
-  <a href="https://wa.me/6287742337899">
-    <img src="whatsapp.png" alt="WhatsApp" width="35" height="35">
-  </a>
+    <a href="https://wa.me/6287742337899">
+      <img src="whatsapp.png" alt="WhatsApp" width="35" height="35">
+    </a>
+  </div>
 
   <div class="portfolio-images">
     <div class="portfolio-image" style="background-image: url('https://drive.google.com/uc?export=view&id=1Q6Gv38oW60mlJ4JQSUX_2wrcMGIZX5g_');"></div>
@@ -101,13 +113,17 @@
     <!-- Add more div tags with background-image style for your portfolio images -->
   </div>
 
-  <div class="video-container">
-    <video class="video" autoplay loop muted>
-      <source src="https://drive.google.com/uc?export=download&id=1Og4cW5EAeic36lfersFr_L6lQtBgCXRy" type="video/webm">
-    </video>
-    <video class="video" autoplay loop muted>
-      <source src="https://drive.google.com/uc?export=download&id=1qUunICHqDqmg36vRQNpfa60wyGQyiz24" type="video/webm">
-    </video>
+  <div class="portfolio-images">
+    <div class="video-container">
+      <video class="video" autoplay loop muted>
+        <source src="https://drive.google.com/uc?export=download&id=1Og4cW5EAeic36lfersFr_L6lQtBgCXRy" type="video/webm">
+      </video>
+    </div>
+    <div class="video-container">
+      <video class="video" autoplay loop muted>
+        <source src="https://drive.google.com/uc?export=download&id=1qUunICHqDqmg36vRQNpfa60wyGQyiz24" type="video/webm">
+      </video>
+    </div>
   </div>
 
   <div class="no-right-click">Jangan klik kanan!</div>
