@@ -116,9 +116,54 @@
       -ms-user-select: none;
       user-select: none;
     }
+
+    /* CSS for the mobile reminder pop-up */
+    .mobile-reminder {
+      display: none;
+    }
+
+    .mobile-popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000000;
+      color: #ffffff;
+      padding: 20px;
+      font-size: 16px;
+      z-index: 9999;
+      text-align: center;
+    }
+
+    .mobile-popup .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .mobile-reminder {
+        display: block;
+      }
+
+      .mobile-popup {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="mobile-reminder"></div>
+
+  <div class="mobile-popup">
+    <span class="close-button">&times;</span>
+    <p>Untuk tampilan yang lebih baik, buka melalui device dengan layar lebih besar (laptop, tablet, dsb)</p>
+  </div>
+
   <h1>Hi! aku Adi</h1>
 
   <div class="contact-icons">
@@ -158,6 +203,23 @@
   <audio id="rightClickSound" src="alarm.ogg"></audio>
 
   <script>
+    // JavaScript code
+    window.addEventListener('load', function() {
+      var isMobile = window.innerWidth <= 768;
+      var mobileReminder = document.querySelector('.mobile-reminder');
+      var mobilePopup = document.querySelector('.mobile-popup');
+      var closeButton = document.querySelector('.close-button');
+
+      if (isMobile) {
+        mobileReminder.style.display = 'block';
+        mobilePopup.style.display = 'block';
+      }
+
+      closeButton.addEventListener('click', function() {
+        mobilePopup.style.display = 'none';
+      });
+    });
+
     const portfolioImages = document.querySelectorAll('.portfolio-image');
     const fullscreenOverlay = document.querySelector('.fullscreen-overlay');
     const fullscreenImage = document.querySelector('.fullscreen-image');
