@@ -165,6 +165,17 @@
             opacity: 0; /* Hide by setting opacity to 0 */
             pointer-events: none; /* Prevent interaction */
         }
+
+        /* Loading styles */
+        .loading {
+            color: #fff;
+            font-size: 1.5em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
@@ -205,6 +216,7 @@
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="img01">
     <video class="modal-content" id="video01" controls></video>
+    <div class="loading" id="loading">Loading...</div> <!-- Loading text -->
     <div class="controls">
         <button class="button" id="prevBtn" onclick="moveSlide(-1)">&#10094;</button>
         <button class="button" id="nextBtn" onclick="moveSlide(1)">&#10095;</button>
@@ -285,17 +297,25 @@
         const modalImg = document.getElementById("img01");
         const modalVideo = document.getElementById("video01");
         const header = document.getElementById("header");
+        const loadingText = document.getElementById("loading");
 
         if (type === 'image') {
             modalImg.src = src;
             modalImg.style.display = "block";
             modalVideo.style.display = "none";
+            loadingText.style.display = "none"; // Sembunyikan loading text
             currentIndex = index;
             currentType = 'image';
         } else {
             modalVideo.src = src;
             modalVideo.style.display = "block";
             modalImg.style.display = "none";
+            loadingText.style.display = "block"; // Tampilkan loading text
+
+            // Tambahkan event listener untuk menyembunyikan loading text saat video dimuat
+            modalVideo.onloadeddata = () => {
+                loadingText.style.display = "none"; // Sembunyikan loading text setelah video dimuat
+            };
             currentIndex = index;
             currentType = 'video';
         }
@@ -306,35 +326,24 @@
 
     function closeModal() {
         const modal = document.getElementById("myModal");
-        modal.style.display = "none";
         const modalImg = document.getElementById("img01");
         const modalVideo = document.getElementById("video01");
-
-        // Reset the media when closing the modal
-        if (currentType === 'video') {
-            modalVideo.pause();
-            modalVideo.currentTime = 0; // Reset video time
-        }
-
         const header = document.getElementById("header");
-        header.classList.remove('hidden'); // Show the header again
+
+        modal.style.display = "none";
+        modalImg.src = ""; // Reset src
+        modalVideo.src = ""; // Reset src
+        header.classList.remove('hidden'); // Show the header
     }
 
     function moveSlide(direction) {
-        const modalImg = document.getElementById("img01");
-        const modalVideo = document.getElementById("video01");
-
-        // Update currentIndex
-        currentIndex = (currentIndex + direction + (currentType === 'image' ? totalImages : totalVideos)) % (currentType === 'image' ? totalImages : totalVideos);
+        const totalItems = currentType === 'image' ? totalImages : totalVideos;
+        currentIndex = (currentIndex + direction + totalItems) % totalItems; // Wrap around
 
         if (currentType === 'image') {
-            modalImg.src = imageList[currentIndex];
-            modalVideo.style.display = "none";
-            modalImg.style.display = "block";
+            openModal(imageList[currentIndex], currentIndex, 'image');
         } else {
-            modalVideo.src = videoList[currentIndex];
-            modalVideo.style.display = "block";
-            modalImg.style.display = "none";
+            openModal(videoList[currentIndex], currentIndex, 'video');
         }
     }
 </script>
