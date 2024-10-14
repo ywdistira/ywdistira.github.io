@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adi's Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fraunces', serif;
+            background-color: #121212;
+            color: #fff;
+            text-align: center;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 1em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: opacity 0.3s; /* Smooth transition for hiding */
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        nav {
+            margin-top: 1em;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        .skills {
+            margin-bottom: 2em;
+        }
+
+        .skills img {
+            width: 60px; /* Adjust size as needed */
+            margin: 0 10px; /* Space between icons */
+        }
+
+        .gallery, .videos {
+            margin-bottom: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .column img, .column video {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+
+        .button {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #1f1f1f;
+            color: white;
+        }
+
+        /* New class to hide the header */
+        .hidden {
+            opacity: 0; /* Hide by setting opacity to 0 */
+            pointer-events: none; /* Prevent interaction */
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <h1>Adi's Portfolio</h1>
+    <nav>
+        <a href="#skills">Skills</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#videos">Videos</a>
+    </nav>
+</header>
+
+<main>
+    <section class="skills" id="skills">
+        <h2>Skills</h2>
+        <div>
+            <img src="Skills1.png" alt="Skill Icon 1">
+            <img src="Skills2.png" alt="Skill Icon 2">
+            <img src="Skills3.png" alt="Skill Icon 3">
+            <img src="Skills4.png" alt="Skill Icon 4">
+            <img src="Skills5.png" alt="Skill Icon 5">
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <h2>Gallery</h2>
+        <div class="container" id="imageContainer"></div>
+    </section>
+
+    <section class="videos" id="videos">
+        <h2>Videos</h2>
+        <div class="container" id="videoContainer"></div>
+    </section>
+</main>
+
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="img01">
+    <video class="modal-content" id="video01" controls></video>
+    <div class="controls">
+        <button class="button" id="prevBtn" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="button" id="nextBtn" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Yudistira Adyatama</p>
+</footer>
+
+<script>
+    const imageList = [
+        'Porto1.webp', 'Porto2.webp', 'Porto3.webp', 'Porto4.webp', 'Porto5.webp', 'Porto6.webp',
+        'Porto7.webp', 'Porto8.webp', 'Porto9.webp'
+    ];
+
+    const videoList = [
+        'Video1.webm', 'Video2.webm', 'Video3.webm', 'Video4.webm', 'Video5.webm', 'Video6.webm'
+    ];
+
+    const imageContainer = document.getElementById("imageContainer");
+    const videoContainer = document.getElementById("videoContainer");
+
+    const totalImages = imageList.length;
+    const totalVideos = videoList.length;
+    const columns = 3;
+
+    const columnElementsImages = [];
+    const columnElementsVideos = [];
+
+    for (let i = 0; i < columns; i++) {
+        const column = document.createElement("div");
+        column.classList.add("column");
+        columnElementsImages.push(column);
+        imageContainer.appendChild(column);
+    }
+
+    for (let i = 0; i < columns; i++) {
+        const column = document.createElement("div");
+        column.classList.add("column");
+        columnElementsVideos.push(column);
+        videoContainer.appendChild(column);
+    }
+
+    let imageIndex = 0;
+    while (imageIndex < totalImages) {
+        for (let i = 0; i < columns; i++) {
+            if (imageIndex >= totalImages) break;
+            const img = document.createElement("img");
+            img.src = imageList[imageIndex];
+            img.alt = `Portfolio Image ${imageIndex + 1}`;
+            img.loading = "lazy";
+            img.onclick = () => openModal(img.src, imageIndex, 'image');
+            columnElementsImages[i].appendChild(img);
+            imageIndex++;
+        }
+    }
+
+    let videoIndex = 0;
+    while (videoIndex < totalVideos) {
+        for (let i = 0; i < columns; i++) {
+            if (videoIndex >= totalVideos) break;
+            const video = document.createElement("video");
+            video.src = videoList[videoIndex];
+            video.alt = `Portfolio Video ${videoIndex + 1}`;
+            video.loading = "lazy";
+            video.onclick = () => openModal(video.src, videoIndex, 'video');
+            columnElementsVideos[i].appendChild(video);
+            videoIndex++;
+        }
+    }
+
+    let currentIndex;
+    let currentType;
+
+    function openModal(src, index, type) {
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        const modalVideo = document.getElementById("video01");
+        const header = document.getElementById("header");
+
+        if (type === 'image') {
+            modalImg.src = src;
+            modalImg.style.display = "block";
+            modalVideo.style.display = "none";
+            currentIndex = index;
+            currentType = 'image';
+        } else {
+            modalVideo.src = src;
+            modalVideo.style.display = "block";
+            modalImg.style.display = "none";
+            currentIndex = index;
+            currentType = 'video';
+        }
+
+        modal.style.display = "block";
+        header.classList.add('hidden'); // Hide the header
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("myModal");
+        modal.style.display = "none";
+        const modalImg = document.getElementById("img01");
+        const modalVideo = document.getElementById("video01");
+
+        // Reset the media when closing the modal
+        if (currentType === 'video') {
+            modalVideo.pause();
+            modalVideo.currentTime = 0; // Reset video time
+        }
+
+        const header = document.getElementById("header");
+        header.classList.remove('hidden'); // Show the header again
+    }
+
+    function moveSlide(direction) {
+        const modalImg = document.getElementById("img01");
+        const modalVideo = document.getElementById("video01");
+
+        // Update currentIndex
+        currentIndex = (currentIndex + direction + (currentType === 'image' ? totalImages : totalVideos)) % (currentType === 'image' ? totalImages : totalVideos);
+
+        if (currentType === 'image') {
+            modalImg.src = imageList[currentIndex];
+            modalVideo.style.display = "none";
+            modalImg.style.display = "block";
+        } else {
+            modalVideo.src = videoList[currentIndex];
+            modalVideo.style.display = "block";
+            modalImg.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
