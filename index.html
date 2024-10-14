@@ -170,11 +170,7 @@
         .loading {
             color: #fff;
             font-size: 1.5em;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none; /* Initially hidden */
+            margin: 20px 0; /* Add margin for spacing */
         }
     </style>
 </head>
@@ -208,6 +204,7 @@
 
     <section class="videos" id="videos">
         <h2>Videos</h2>
+        <div class="loading" id="loading">Loading videos...</div> <!-- Loading text -->
         <div class="container" id="videoContainer"></div>
     </section>
 </main>
@@ -216,7 +213,6 @@
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="img01">
     <video class="modal-content" id="video01" controls></video>
-    <div class="loading" id="loading">Loading...</div> <!-- Loading text -->
     <div class="controls">
         <button class="button" id="prevBtn" onclick="moveSlide(-1)">&#10094;</button>
         <button class="button" id="nextBtn" onclick="moveSlide(1)">&#10095;</button>
@@ -239,6 +235,7 @@
 
     const imageContainer = document.getElementById("imageContainer");
     const videoContainer = document.getElementById("videoContainer");
+    const loadingText = document.getElementById("loading");
 
     const totalImages = imageList.length;
     const totalVideos = videoList.length;
@@ -289,6 +286,9 @@
         }
     }
 
+    // Sembunyikan teks loading setelah semua video ditambahkan
+    loadingText.style.display = 'none'; // Tampilkan setelah selesai memuat video
+
     let currentIndex;
     let currentType;
 
@@ -297,25 +297,17 @@
         const modalImg = document.getElementById("img01");
         const modalVideo = document.getElementById("video01");
         const header = document.getElementById("header");
-        const loadingText = document.getElementById("loading");
 
         if (type === 'image') {
             modalImg.src = src;
             modalImg.style.display = "block";
             modalVideo.style.display = "none";
-            loadingText.style.display = "none"; // Sembunyikan loading text
             currentIndex = index;
             currentType = 'image';
         } else {
             modalVideo.src = src;
             modalVideo.style.display = "block";
             modalImg.style.display = "none";
-            loadingText.style.display = "block"; // Tampilkan loading text
-
-            // Tambahkan event listener untuk menyembunyikan loading text saat video dimuat
-            modalVideo.onloadeddata = () => {
-                loadingText.style.display = "none"; // Sembunyikan loading text setelah video dimuat
-            };
             currentIndex = index;
             currentType = 'video';
         }
@@ -346,6 +338,11 @@
             openModal(videoList[currentIndex], currentIndex, 'video');
         }
     }
+
+    // Menampilkan loading text saat video akan dimuat
+    window.onload = () => {
+        loadingText.style.display = 'none'; // Sembunyikan loading text setelah semua konten dimuat
+    };
 </script>
 
 </body>
