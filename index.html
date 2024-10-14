@@ -287,10 +287,12 @@
     }
 
     // Sembunyikan teks loading setelah semua video ditambahkan
-    loadingText.style.display = 'none'; // Tampilkan setelah selesai memuat video
+    window.onload = () => {
+        loadingText.style.display = 'none'; // Sembunyikan loading text setelah semua konten dimuat
+    };
 
-    let currentIndex;
-    let currentType;
+    let currentIndex = 0;
+    let currentType = '';
 
     function openModal(src, index, type) {
         const modal = document.getElementById("myModal");
@@ -338,11 +340,6 @@
             openModal(videoList[currentIndex], currentIndex, 'video');
         }
     }
-
-    // Menampilkan loading text saat video akan dimuat
-    window.onload = () => {
-        loadingText.style.display = 'none'; // Sembunyikan loading text setelah semua konten dimuat
-    };
 </script>
 
 </body>
