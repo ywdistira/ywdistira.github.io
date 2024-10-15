@@ -315,7 +315,7 @@
         }
 
         modal.style.display = "block";
-        header.classList.add('hidden'); // Hide the header
+        header.classList.add('hidden'); // Sembunyikan header saat modal terbuka
     }
 
     function closeModal() {
@@ -327,19 +327,31 @@
         modal.style.display = "none";
         modalImg.src = ""; // Reset src
         modalVideo.src = ""; // Reset src
-        header.classList.remove('hidden'); // Show the header
+        header.classList.remove('hidden'); // Tampilkan kembali header
     }
 
-    function moveSlide(direction) {
-        const totalItems = currentType === 'image' ? totalImages : totalVideos;
-        currentIndex = (currentIndex + direction + totalItems) % totalItems; // Wrap around
-
+    function moveSlide(n) {
         if (currentType === 'image') {
-            openModal(imageList[currentIndex], currentIndex, 'image');
-        } else {
-            openModal(videoList[currentIndex], currentIndex, 'video');
+            currentIndex = (currentIndex + n + totalImages) % totalImages;
+            document.getElementById("img01").src = imageList[currentIndex];
+        } else if (currentType === 'video') {
+            currentIndex = (currentIndex + n + totalVideos) % totalVideos;
+            document.getElementById("video01").src = videoList[currentIndex];
         }
     }
+
+    // Event listener for keyboard controls
+    document.addEventListener('keydown', function(event) {
+        if (document.getElementById("myModal").style.display === "block") {
+            if (event.key === "Escape") {
+                closeModal(); // Close modal on escape key
+            } else if (event.key === "ArrowLeft") {
+                moveSlide(-1); // Move to previous slide on left arrow
+            } else if (event.key === "ArrowRight") {
+                moveSlide(1); // Move to next slide on right arrow
+            }
+        }
+    });
 </script>
 
 </body>
