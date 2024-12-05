@@ -1,0 +1,239 @@
+/* General styles */
+body {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #121212; /* Latar belakang gelap */
+    color: #ffffff; /* Teks warna terang */
+}
+
+header, footer {
+    background-color: #1f1f1f; /* Warna gelap untuk header dan footer */
+}
+
+header h1 {
+    margin: 0;
+}
+
+header {
+    background-color: #1f1f1f; /* Warna gelap untuk header */
+    color: white;
+    padding: 20px 20px; /* Ubah padding untuk meningkatkan tinggi header */
+    position: -webkit-sticky; /* Untuk kompatibilitas dengan Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Pastikan header berada di atas elemen lain */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: inline-flex;
+    gap: 15px;
+}
+
+nav ul li a {
+    color: #ffffff; /* Warna teks putih untuk link navigasi */
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin: 20px 0;
+    scroll-margin-top: 110px; /* Offset top scroll to account for sticky header */
+}
+
+/* Flex container for Gallery */
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap; /* Membungkus konten ke baris baru */
+    justify-content: center; /* Baris terakhir center */
+    gap: 15px; /* Jarak antar konten */
+    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+}
+
+.gallery-grid .gallery-item {
+    position: relative;
+    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
+    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
+    aspect-ratio: 4 / 3; /* Untuk Gallery, rasio 4:3 */
+    overflow: hidden; /* Pastikan konten yang melampaui batas tidak terlihat */
+    border-radius: 20px; /* Tambahkan border radius */
+    border: 1px solid #ccc; /* Tambahkan border jika diperlukan */
+}
+
+.gallery-grid .gallery-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop gambar agar sesuai dengan rasio 4:3 */
+}
+
+/* Flex container for Projects */
+.image-grid {
+    display: flex;
+    flex-wrap: wrap; /* Membungkus konten ke baris baru */
+    justify-content: center; /* Baris terakhir center */
+    gap: 15px; /* Jarak antar konten */
+    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+}
+
+.image-grid img {
+    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
+    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
+    aspect-ratio: 1; /* Untuk Projects, memastikan rasio 1:1 */
+    object-fit: cover; /* Crop gambar agar sesuai dengan rasio */
+    box-sizing: border-box; /* Memastikan padding tidak memengaruhi ukuran */
+    border-radius: 20px; /* Tambahkan border radius */
+    border: 1px solid #ccc;
+}
+
+/* Flex container for Videos */
+.video-grid {
+    display: flex;
+    flex-wrap: wrap; /* Membungkus konten ke baris baru */
+    justify-content: center; /* Baris terakhir center */
+    gap: 15px; /* Jarak antar konten */
+    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+}
+
+.video-grid video {
+    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
+    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
+    aspect-ratio: 4 / 3; /* Untuk Videos, rasio 4:3 */
+    object-fit: cover; /* Crop video agar sesuai dengan rasio */
+    box-sizing: border-box; /* Memastikan padding tidak memengaruhi ukuran */
+    border-radius: 20px; /* Tambahkan border radius */
+    border: 1px solid #ccc;
+}
+
+/* Skills section */
+#skills .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center; /* Center semua konten */
+}
+
+#skills .icon-grid img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Responsiveness for small screens */
+@media (max-width: 768px) {
+    .image-grid img, .video-grid video, .gallery-grid .gallery-item {
+        flex: 0 0 100%; /* Satu konten per baris */
+        max-width: 100%;
+    }
+    #skills .icon-grid {
+        gap: 8px; /* Sedikit lebih rapat untuk layar kecil */
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+#modal {
+    display: none;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hide the modal by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f; /* Ubah latar belakang modal menjadi gelap */
+    padding: 20px;
+    border-radius: 20px; /* Tambahkan border radius */
+    width: 70%; /* Ubah max-width menjadi width */
+    max-width: none; /* Hilangkan batasan lebar maksimal */
+    max-height: 90%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.modal-text {
+    flex: 1;
+    margin-left: 5px;
+    text-align: left;
+    width: 100%;
+    max-width: none; /* Hilangkan batasan lebar maksimal */
+    box-sizing: border-box;
+}
+
+.modal-content, #modal-video {
+    margin: 10px;
+    max-width: 90%; /* Increase to 80% of the available width */
+    max-height: 90vh; /* Increase to 80% of the viewport height */
+    object-fit: contain; /* Maintain aspect ratio */
+}
+
+.modal-media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-text h2 {
+    margin-bottom: 10px;
+}
+
+.modal-text p {
+    margin-bottom: 0;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px; /* Adjust as needed */
+    right: 35px; /* Adjust as needed */
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 2; /* Ensure it is above other elements */
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
