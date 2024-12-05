@@ -8,6 +8,19 @@ body {
     color: #ffffff; /* Teks warna terang */
 }
 
+h2 {
+    margin-bottom: 10px;
+}
+p {
+    margin-top: 0px;
+}
+
+section p {
+    max-width: 60%; /* Limit width to 60% */
+    margin-left: auto; /* Center align */
+    margin-right: auto; /* Center align */
+}
+
 header, footer {
     background-color: #1f1f1f; /* Warna gelap untuk header dan footer */
 }
@@ -196,6 +209,11 @@ footer {
     width: 100%;
     max-width: none; /* Hilangkan batasan lebar maksimal */
     box-sizing: border-box;
+
+}
+
+.modal-text p {
+	text-align: justify; /* Add this line */
 }
 
 .modal-content, #modal-video {
@@ -236,4 +254,34 @@ footer {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Navigation buttons */
+.modal-nav {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem; /* Reduce font size */
+    padding: 5px 15px; /* Reduce padding */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 2; /* Ensure it is above other elements */
+}
+
+.modal-nav:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+#prev {
+    position: fixed; /* Change to fixed position */
+    left: 20px; /* Move further outside the modal wrapper */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#next {
+    position: fixed; /* Change to fixed position */
+    right: 20px; /* Move further outside the modal wrapper */
+    top: 50%;
+    transform: translateY(-50%);
 }
