@@ -4,13 +4,13 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #121212; /* Latar belakang gelap */
-    color: #ffffff; /* Teks warna terang */
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text color */
 }
 
 h2 {
     margin-bottom: 10px;
-	margin-top: 80px;
+    margin-top: 80px;
 }
 p {
     margin-top: 0px;
@@ -23,7 +23,7 @@ section p {
 }
 
 header, footer {
-    background-color: #1f1f1f; /* Warna gelap untuk header dan footer */
+    background-color: #1f1f1f; /* Dark color for header and footer */
 }
 
 header h1 {
@@ -31,13 +31,13 @@ header h1 {
 }
 
 header {
-    background-color: #1f1f1f; /* Warna gelap untuk header */
+    background-color: #1f1f1f; /* Dark color for header */
     color: white;
-    padding: 20px 20px; /* Ubah padding untuk meningkatkan tinggi header */
-    position: -webkit-sticky; /* Untuk kompatibilitas dengan Safari */
+    padding: 20px 20px; /* Adjust padding for increased header height */
+    position: -webkit-sticky; /* For Safari compatibility */
     position: sticky;
     top: 0;
-    z-index: 1000; /* Pastikan header berada di atas elemen lain */
+    z-index: 1000; /* Ensure header is above other elements */
 }
 
 nav ul {
@@ -49,7 +49,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #ffffff; /* Warna teks putih untuk link navigasi */
+    color: #ffffff; /* White text color for navigation links */
     text-decoration: none;
 }
 
@@ -69,20 +69,20 @@ section {
 /* Flex container for Gallery */
 .gallery-grid {
     display: flex;
-    flex-wrap: wrap; /* Membungkus konten ke baris baru */
-    justify-content: center; /* Baris terakhir center */
-    gap: 15px; /* Jarak antar konten */
-    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+    flex-wrap: wrap; /* Wrap content to new rows */
+    justify-content: center; /* Center last row */
+    gap: 15px; /* Space between content */
+    padding: 0 10px; /* Add some padding to container */
 }
 
 .gallery-grid .gallery-item {
     position: relative;
-    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
-    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
-    aspect-ratio: 4 / 3; /* Untuk Gallery, rasio 4:3 */
-    overflow: hidden; /* Pastikan konten yang melampaui batas tidak terlihat */
-    border-radius: 20px; /* Tambahkan border radius */
-    border: 1px solid #ccc; /* Tambahkan border jika diperlukan */
+    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
+    max-width: calc(33.33% - 15px); /* Limit max width */
+    aspect-ratio: 4 / 3; /* 4:3 ratio for Gallery */
+    overflow: hidden; /* Hide content that exceeds boundaries */
+    border-radius: 20px; /* Add border radius */
+    border: 1px solid #ccc; /* Add border if needed */
 }
 
 .gallery-grid .gallery-item img {
@@ -91,45 +91,48 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Crop gambar agar sesuai dengan rasio 4:3 */
+    object-fit: cover; /* Crop image to fit 4:3 ratio */
+    cursor: pointer; /* Add cursor pointer on hover */
 }
 
 /* Flex container for Projects */
 .image-grid {
     display: flex;
-    flex-wrap: wrap; /* Membungkus konten ke baris baru */
-    justify-content: center; /* Baris terakhir center */
-    gap: 15px; /* Jarak antar konten */
-    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+    flex-wrap: wrap; /* Wrap content to new rows */
+    justify-content: center; /* Center last row */
+    gap: 15px; /* Space between content */
+    padding: 0 10px; /* Add some padding to container */
 }
 
 .image-grid img {
-    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
-    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
-    aspect-ratio: 1; /* Untuk Projects, memastikan rasio 1:1 */
-    object-fit: cover; /* Crop gambar agar sesuai dengan rasio */
-    box-sizing: border-box; /* Memastikan padding tidak memengaruhi ukuran */
-    border-radius: 20px; /* Tambahkan border radius */
+    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
+    max-width: calc(33.33% - 15px); /* Limit max width */
+    aspect-ratio: 1; /* Ensure 1:1 ratio for Projects */
+    object-fit: cover; /* Crop image to fit ratio */
+    box-sizing: border-box; /* Ensure padding doesn't affect size */
+    border-radius: 20px; /* Add border radius */
     border: 1px solid #ccc;
+    cursor: pointer; /* Add cursor pointer on hover */
 }
 
 /* Flex container for Videos */
 .video-grid {
     display: flex;
-    flex-wrap: wrap; /* Membungkus konten ke baris baru */
-    justify-content: center; /* Baris terakhir center */
-    gap: 15px; /* Jarak antar konten */
-    padding: 0 10px; /* Memberikan sedikit padding ke kontainer */
+    flex-wrap: wrap; /* Wrap content to new rows */
+    justify-content: center; /* Center last row */
+    gap: 15px; /* Space between content */
+    padding: 0 10px; /* Add some padding to container */
 }
 
 .video-grid video {
-    flex: 1 1 calc(33.33% - 15px); /* 3 konten per baris */
-    max-width: calc(33.33% - 15px); /* Membatasi ukuran max width */
-    aspect-ratio: 4 / 3; /* Untuk Videos, rasio 4:3 */
-    object-fit: cover; /* Crop video agar sesuai dengan rasio */
-    box-sizing: border-box; /* Memastikan padding tidak memengaruhi ukuran */
-    border-radius: 20px; /* Tambahkan border radius */
+    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
+    max-width: calc(33.33% - 15px); /* Limit max width */
+    aspect-ratio: 4 / 3; /* 4:3 ratio for Videos */
+    object-fit: cover; /* Crop video to fit ratio */
+    box-sizing: border-box; /* Ensure padding doesn't affect size */
+    border-radius: 20px; /* Add border radius */
     border: 1px solid #ccc;
+    cursor: pointer; /* Add cursor pointer on hover */
 }
 
 /* Skills section */
@@ -137,7 +140,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center; /* Center semua konten */
+    justify-content: center; /* Center all content */
 }
 
 #skills .icon-grid img {
@@ -149,11 +152,11 @@ section {
 /* Responsiveness for small screens */
 @media (max-width: 768px) {
     .image-grid img, .video-grid video, .gallery-grid .gallery-item {
-        flex: 0 0 100%; /* Satu konten per baris */
+        flex: 0 0 100%; /* One item per row */
         max-width: 100%;
     }
     #skills .icon-grid {
-        gap: 8px; /* Sedikit lebih rapat untuk layar kecil */
+        gap: 8px; /* Slightly tighter for small screens */
     }
 }
 
@@ -189,11 +192,11 @@ footer {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #1f1f1f; /* Ubah latar belakang modal menjadi gelap */
+    background-color: #1f1f1f; /* Dark background for modal */
     padding: 20px;
-    border-radius: 20px; /* Tambahkan border radius */
-    width: 70%; /* Ubah max-width menjadi width */
-    max-width: none; /* Hilangkan batasan lebar maksimal */
+    border-radius: 20px; /* Add border radius */
+    width: 70%; /* Change max-width to width */
+    max-width: none; /* Remove max-width limit */
     max-height: 90%;
     box-sizing: border-box;
     position: absolute;
@@ -208,19 +211,20 @@ footer {
     margin-left: 5px;
     text-align: left;
     width: 100%;
-    max-width: none; /* Hilangkan batasan lebar maksimal */
+    max-width: none; /* Remove max-width limit */
     box-sizing: border-box;
-
+    overflow-y: auto; /* Allow scrolling */
+    color: #ffffff; /* Ensure text color is visible */
 }
 
 .modal-text p {
-	text-align: justify; /* Add this line */
+    text-align: justify; /* Add this line */
 }
 
 .modal-content, #modal-video {
     margin: 10px;
-    max-width: 90%; /* Increase to 80% of the available width */
-    max-height: 90vh; /* Increase to 80% of the viewport height */
+    max-width: 90%; /* Increase to 90% of the available width */
+    max-height: 90vh; /* Increase to 90% of the viewport height */
     object-fit: contain; /* Maintain aspect ratio */
 }
 
