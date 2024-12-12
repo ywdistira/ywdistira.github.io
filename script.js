@@ -44,8 +44,8 @@ function openModal(content, index, section) {
     currentSection = section;
 }
 
-// Add event listener to all images in projects and gallery sections
-var images = document.querySelectorAll("#projects img, #gallery img");
+// Add event listener to all images in projects, achievements, and gallery sections
+var images = document.querySelectorAll("#projects img, #achievements img, #gallery img"); // Add #achievements img
 images.forEach((img, index) => {
     img.addEventListener("click", function() {
         openModal(this, index, img.closest("section").id);
