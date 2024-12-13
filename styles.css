@@ -12,6 +12,7 @@ h2 {
     margin-bottom: 10px;
     margin-top: 80px;
 }
+
 p {
     margin-top: 0px;
 }
@@ -106,8 +107,8 @@ section {
 
 .gallery-grid .gallery-item {
     position: relative;
-    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
-    max-width: calc(33.33% - 15px); /* Limit max width */
+    flex: 1 1 calc(33.33% - 30px); /* 3 items per row */
+    max-width: calc(33.33% - 30px); /* Limit max width */
     aspect-ratio: 4 / 3; /* 4:3 ratio for Gallery */
     overflow: hidden; /* Hide content that exceeds boundaries */
     border-radius: 20px; /* Add border radius */
@@ -133,15 +134,42 @@ section {
     padding: 0 10px; /* Add some padding to container */
 }
 
-.image-grid img {
-    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
-    max-width: calc(33.33% - 15px); /* Limit max width */
+.image-grid .image-container {
+    position: relative;
+    flex: 1 1 calc(33.33% - 30px); /* 3 items per row */
+    max-width: calc(33.33% - 30px); /* Limit max width */
     aspect-ratio: 1; /* Ensure 1:1 ratio for Projects */
-    object-fit: cover; /* Crop image to fit ratio */
+    overflow: hidden; /* Hide content that exceeds boundaries */
     box-sizing: border-box; /* Ensure padding doesn't affect size */
+    margin-bottom: 30px; /* Increase margin between rows */
     border-radius: 20px; /* Add border radius */
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Add border if needed */
+}
+
+.image-grid .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop image to fit 1:1 ratio */
     cursor: pointer; /* Add cursor pointer on hover */
+}
+
+.image-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.image-container:hover .image-title {
+    opacity: 1;
 }
 
 /* Flex container for Videos */
@@ -154,8 +182,8 @@ section {
 }
 
 .video-grid video {
-    flex: 1 1 calc(33.33% - 15px); /* 3 items per row */
-    max-width: calc(33.33% - 15px); /* Limit max width */
+    flex: 1 1 calc(33.33% - 30px); /* 3 items per row */
+    max-width: calc(33.33% - 30px); /* Limit max width */
     aspect-ratio: 4 / 3; /* 4:3 ratio for Videos */
     object-fit: cover; /* Crop video to fit ratio */
     box-sizing: border-box; /* Ensure padding doesn't affect size */
@@ -180,7 +208,7 @@ section {
 
 /* Responsiveness for small screens */
 @media (max-width: 768px) {
-    .image-grid img, .video-grid video, .gallery-grid .gallery-item {
+    .image-grid .image-container, .video-grid video, .gallery-grid .gallery-item {
         flex: 0 0 100%; /* One item per row */
         max-width: 100%;
     }
@@ -319,4 +347,3 @@ footer {
     top: 50%;
     transform: translateY(-50%);
 }
-
